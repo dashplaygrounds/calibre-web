@@ -1,0 +1,22 @@
+version: '3'
+services:
+  calibre-web:
+      image: ghcr.io/linuxserver/calibre-web
+      container_name: calibre-web
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Etc/UTC
+        - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
+        - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+      volumes:
+        - $HOME/config:/config
+        - $HOME/Documents:/books
+      restart: always
+      ports:
+        - 8083:8083
+      networks:
+        - ebooks
+networks:
+  ebooks:
+    external: true
