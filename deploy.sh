@@ -6,3 +6,4 @@ sleep 10
 # And copy to /books volume mapping
 docker cp metadata.db calibre-web:/books
 docker exec calibre-web bash -c 'chmod a+w /books'
+docker exec calibre-web bash -c 'chown -R kasm-user:kasm-user /uploads'
