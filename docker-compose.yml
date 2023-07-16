@@ -4,16 +4,16 @@ services:
     image: ghcr.io/linuxserver/calibre
     container_name: calibre
     environment:
-      - PUID=1000 #change this to your user's PID
-      - PGID=1000 #change this to your user's PGID
+      - PUID=1000
+      - PGID=1000
     volumes:
-      - $HOME/calibre/config:/config #change before the ':'
-      - $HOME/calibre/upload:/uploads #change before the ':'
-      - $HOME/calibre/plugins:/plugins #change before the ':'
-      - $HOME/Documents:/Calibre_Library #this is where your ebooks will end up
+      - /calibre/config:/config
+      - /calibre/upload:/uploads
+      - /calibre/plugins:/plugins
+      - /data/books:/Calibre_Library
     ports:
-      - 8080:8080 #change before the ':' if necessary
-      - 8081:8081 #change before the ':' if necessary
+      - 8080:8080
+      - 8081:8081
     restart: always
     networks:
       - ebooks
@@ -25,11 +25,11 @@ services:
         - PUID=1000
         - PGID=1000
         - TZ=Etc/UTC
-        - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
-        - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+        - DOCKER_MODS=linuxserver/mods:universal-calibre
+        - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       volumes:
-        - $HOME/calibre/config:/config
-        - $HOME/Documents:/books
+        - /calibre/config:/config
+        - /data/books:/Calibre_Library
       restart: always
       ports:
         - 8083:8083
