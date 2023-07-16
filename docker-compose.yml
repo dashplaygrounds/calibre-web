@@ -21,6 +21,8 @@ services:
   calibre-web:
       image: ghcr.io/linuxserver/calibre-web
       container_name: calibre-web
+      depends_on:
+        - calibre
       environment:
         - PUID=1000
         - PGID=1000
