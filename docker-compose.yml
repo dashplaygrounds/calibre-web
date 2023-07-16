@@ -11,6 +11,7 @@ services:
       - /calibre/upload:/uploads
       - /calibre/plugins:/plugins
       - /data/books:/Calibre_Library
+      - /data/uploads:/uploads
     ports:
       - 8080:8080
       - 8081:8081
