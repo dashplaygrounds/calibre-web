@@ -13,7 +13,7 @@ services:
       - /data/books:/Calibre_Library
       - /data/uploads:/uploads
     ports:
-      - 8080:8080
+      - 8079:8080
       - 8081:8081
     restart: always
     networks:

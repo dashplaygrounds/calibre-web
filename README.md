@@ -9,6 +9,7 @@
 `docker exec -it calibre bash`
 `chown -R kasm-user:kasm-user /uploads`
 `ls -lart /uploads`
+`exit`
 
 ## Note:
 Default user:password for calibre is
@@ -19,6 +20,6 @@ admin:admin123
 ```
 docker exec -it calibre-web bash
 cd /app/calibre-web
-python3 cps.py -s kubeadmin:Calibre2023! -p app.db
-  Password for user 'user' changed
+python3 cps.py -s admin:Calibre2023! -p app.db
+  Password for user 'admin' changed
 ```
