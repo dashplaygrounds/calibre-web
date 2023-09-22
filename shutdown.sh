@@ -1,3 +1,4 @@
-sudo rm -rf /calibre/*
-docker compose down
-ls -lrt /calibre
+docker compose down -v
+sudo rm -rf ./calibre
+ls -lrt ./calibre
+

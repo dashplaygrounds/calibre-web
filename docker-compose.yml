@@ -4,40 +4,40 @@ services:
     image: ghcr.io/linuxserver/calibre
     container_name: calibre
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=$PUID #change this to your user's PID
+      - PGID=$PGID #change this to your user's PGID
+      - FM_HOME=/books/Calibre_Library
     volumes:
-      - /calibre/config:/config
-      - /calibre/upload:/uploads
-      - /calibre/plugins:/plugins
-      - /data/books:/Calibre_Library
-      - /data/uploads:/uploads
+      - ./calibre/config:/config #change before the ':'
+      - ./calibre/upload:/uploads #change before the ':'
+      - ./calibre/plugins:/plugins #change before the ':'
+      - /data/books/CalibreLibrary:/books/Calibre_Library #this is where your ebooks will end up
+      # - ./calibre/CalibreLibrary:/books/Calibre_Library #this is where your ebooks will end up
     ports:
-      - 8079:8080
-      - 8081:8081
-    restart: always
+      - 8079:8080 #change before the ':' if necessary
+      - 8081:8081 #change before the ':' if necessary
+    restart: unless-stopped
     networks:
       - ebooks
 
   calibre-web:
-      image: ghcr.io/linuxserver/calibre-web
-      container_name: calibre-web
-      depends_on:
-        - calibre
-      environment:
-        - PUID=1000
-        - PGID=1000
-        - TZ=Etc/UTC
-        - DOCKER_MODS=linuxserver/mods:universal-calibre
-        - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      volumes:
-        - /calibre/config:/config
-        - /data/books:/Calibre_Library
-      restart: always
-      ports:
-        - 8083:8083
-      networks:
-        - ebooks
+    image: ghcr.io/linuxserver/calibre-web
+    container_name: calibre-web
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+    volumes:
+      - ./calibre/calibre-web:/config
+      - /data/books/CalibreLibrary:/books
+      # - ./calibre/CalibreLibrary:/books
+    restart: unless-stopped
+    depends_on:
+      - calibre
+    ports:
+      - 8083:8083
+    networks:
+      - ebooks
+
 networks:
   ebooks:
     external: true
