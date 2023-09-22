@@ -1,6 +1,7 @@
 #!/bin/bash
 docker pull ghcr.io/linuxserver/calibre:latest
 docker pull ghcr.io/linuxserver/calibre-web:latest
+docker rmi -f $(docker images -f "dangling=true" -q)
 export PUID=1001
 export PGID=1001
 docker network create ebooks

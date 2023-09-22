@@ -9,14 +9,15 @@ services:
       - FM_HOME=/books/Calibre_Library
     volumes:
       - ./calibre/config:/config #change before the ':'
-      - ./calibre/upload:/uploads #change before the ':'
       - ./calibre/plugins:/plugins #change before the ':'
+      - /data/books/CalibreLibrary/uploads:/books/Calibre_Library/uploads #change before the ':'
+      # - /home/$USER/Dropbox/books/CalibreLibrary:/books/Calibre_Library #this is where your ebooks will end up
       - /data/books/CalibreLibrary:/books/Calibre_Library #this is where your ebooks will end up
       # - ./calibre/CalibreLibrary:/books/Calibre_Library #this is where your ebooks will end up
     ports:
       - 8079:8080 #change before the ':' if necessary
       - 8081:8081 #change before the ':' if necessary
-    restart: unless-stopped
+    restart: always
     networks:
       - ebooks
 
@@ -28,9 +29,10 @@ services:
       - PGID=$PGID
     volumes:
       - ./calibre/calibre-web:/config
+      # - /home/$USER/Dropbox/books/CalibreLibrary:/books/Calibre_Library
       - /data/books/CalibreLibrary:/books/Calibre_Library
       # - ./calibre/CalibreLibrary:/books/Calibre_Library
-    restart: unless-stopped
+    restart: always
     depends_on:
       - calibre
     ports:
