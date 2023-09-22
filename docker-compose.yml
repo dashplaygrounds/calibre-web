@@ -1,7 +1,7 @@
 version: '3'
 services:
   calibre:
-    image: ghcr.io/linuxserver/calibre
+    image: ghcr.io/linuxserver/calibre:latest
     container_name: calibre
     environment:
       - PUID=$PUID #change this to your user's PID
@@ -21,15 +21,15 @@ services:
       - ebooks
 
   calibre-web:
-    image: ghcr.io/linuxserver/calibre-web
+    image: ghcr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
     environment:
       - PUID=$PUID
       - PGID=$PGID
     volumes:
       - ./calibre/calibre-web:/config
-      - /data/books/CalibreLibrary:/books
-      # - ./calibre/CalibreLibrary:/books
+      - /data/books/CalibreLibrary:/books/Calibre_Library
+      # - ./calibre/CalibreLibrary:/books/Calibre_Library
     restart: unless-stopped
     depends_on:
       - calibre
