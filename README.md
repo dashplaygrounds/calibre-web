@@ -6,10 +6,12 @@
 
 ## Give permissions to /uploads
 2. Run:
-`docker exec -it calibre bash`
-`chown -R kasm-user:kasm-user /uploads`
-`ls -lart /uploads`
-`exit`
+```
+docker exec -it calibre bash
+chown -R kasm-user:kasm-user /uploads
+ls -lart /uploads
+exit
+```
 
 ## Configure settings here:
 3. Go to [Ebooks-Calibre-Readarr](https://academy.pointtosource.com/containers/ebooks-calibre-readarr/)
@@ -18,7 +20,7 @@
 Default user:password for calibre is
 `admin:admin123`
 
-## Change password (if needed)
+## Change password (optional)
 3. Run:
 ```
 docker exec -it calibre-web bash
